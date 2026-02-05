@@ -1,13 +1,13 @@
-import './App.css'
+import UserProfile from "./components/UserProfile";
 
 function App() {
 
   return (
     
       <div>
-       <h1>Hello Tailwind CSS with React!</h1>
+       <UserProfile />
       </div>
-  )
+  );
 }
 
 export default App;
