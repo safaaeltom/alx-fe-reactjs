@@ -6,10 +6,8 @@ function AddRecipeForm() {
   const [steps, setSteps] = useState("");
   const [errors, setErrors] = useState({});
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    // Validation
+  // 🔍 Separate validation function
+  const validate = () => {
     const newErrors = {};
     if (!title.trim()) newErrors.title = "Recipe title is required.";
     if (!ingredients.trim()) {
@@ -18,11 +16,15 @@ function AddRecipeForm() {
       newErrors.ingredients = "Please include at least two ingredients.";
     }
     if (!steps.trim()) newErrors.steps = "Preparation steps are required.";
+    return newErrors;
+  };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const newErrors = validate(); // ✅ use validate()
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
-      // ✅ Submit logic (later connect to backend or state)
       console.log({ title, ingredients, steps });
       alert("Recipe submitted successfully!");
       setTitle("");
