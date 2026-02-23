@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import Profile from './components/Profile'
 import ProtectedRoute from './components/ProtectedRoute'
+import BlogPost from './components/BlogPost'
 
 function App() {
   return (
@@ -27,6 +28,9 @@ function App() {
           </ProtectedRoute>
         } 
       />
+      {/* Blog post route */}
+      <Route path="/blog/:id" element={<BlogPost />} />
+    
     </Routes>
   </BrowserRouter>
   )
