@@ -4,57 +4,68 @@ function RegistrationForm() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [errors, setErrors] = useState({});
 
-  const handleSubmit = (e) => {
+    const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Basic validation
-    if (!username || !email || !password) {
-      setError("All fields are required");
-      return;
+    let errors = {};
+
+    if (!username) {
+      errors.username = "Username is required";
     }
 
-    setError("");
-    console.log("User Registered:", { username, email, password });
+    if (!email) {
+      errors.email = "Email is required";
+    }
 
-    // Reset form
-    setUsername("");
-    setEmail("");
-    setPassword("");
+    if (!password) {
+      errors.password = "Password is required";
+    }
+
+    setErrors(errors);
+
+    if (Object.keys(errors).length === 0) {
+      console.log("User Registered:", { username, email, password });
+
+      setUsername("");
+      setEmail("");
+      setPassword("");
+    }
   };
 
   return (
     <form onSubmit={handleSubmit}>
       <h2>User Registration</h2>
 
-      {error && <p style={{ color: "red" }}>{error}</p>}
-
       <div>
-        <label>Username: </label>
+        <label>Username:</label>
         <input
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
+        {errors.username && <p style={{ color: "red" }}>{errors.username}</p>}
       </div>
 
       <div>
-        <label>Email: </label>
+        <label>Email:</label>
         <input
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
+        {errors.email && <p style={{ color: "red" }}>{errors.email}</p>}
       </div>
 
       <div>
-        <label>Password: </label>
+        <label>Password:</label>
         <input
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
+        {errors.password && <p style={{ color: "red" }}>{errors.password}</p>}
       </div>
 
       <button type="submit">Register</button>
