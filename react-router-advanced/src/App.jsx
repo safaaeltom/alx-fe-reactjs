@@ -1,9 +1,10 @@
-import { Routes, Route, Navigate } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import Profile from './pages/Profile'
 import ProtectedRoute from './components/ProtectedRoute'
 
 function App() {
   return (
+    <BrowserRouter>
     <Routes>
       {/* Redirect root to profile */}
       <Route path="/" element={<Navigate to="/profile" replace />} />
@@ -27,6 +28,7 @@ function App() {
         } 
       />
     </Routes>
+  </BrowserRouter>
   )
 }
 
