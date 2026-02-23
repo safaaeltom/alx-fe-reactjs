@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
-import Profile from './pages/Profile'
+import Profile from './components/Profile'
 import ProtectedRoute from './components/ProtectedRoute'
 
 function App() {
